@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <div class="container">
+        <div class="signup-box">
+            <h2 class="signup-title">Signup</h2>
+            <form id="signupForm" novalidate>
+                <div class="form-group">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" id="name" name="name" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" name="password" required class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required class="form-input">
+                </div>
+                <button type="submit" class="submit-btn">Signup</button>
+            </form>
+            <p class="signup-text">Already have an account? <a href="index.html" class="signup-link">Login</a></p>
+        </div>   
+    </div>
+    <script>
+        const formEl = document.querySelector('#signupForm');
+        formEl.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            
+            const formData = new FormData(formEl);
+            const data = Object.fromEntries(formData);
+            
+            try {
+                const response = await fetch('http://localhost:4000/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),  // Send data directly
+                });
+                
+                const result = await response.json();
+                if (response.ok) {
+                    window.location.href = 'index.html';
+                } else {
+                    alert(result.message);
+                }
+
+            } catch (error) {
+                console.error("Error during signup:", error);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+/* Basic styles for the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1A202C;
+    margin: 0;
+    padding: 0;
+}
+
+/* Background image styling (if used) */
+.bg-image {
+    background: url('./istockphoto-857045822-612x612.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+.img{
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+}
+/* Desktop menu */
+.desktop-menu {
+    display: flex;
+}
+
+/* Mobile menu button */
+.mobile-menu-button {
+    display: none;
+}
+
+/* For mobile view */
+@media screen and (max-width: 768px) {
+    .desktop-menu {
+        display: none;
+    }
+    .mobile-menu-button {
+        display: block;
+    }
+    #mobile-menu {
+        display: block;
+    }
+}
